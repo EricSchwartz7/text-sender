@@ -7,7 +7,11 @@ Setup instructions
 - `rake db:migrate`
 - `bundle install`
 - `rails s`
-- * Open a new terminal and run `./ngrok http 3000`
+- Open a new terminal and run `./ngrok http 3000`
 - Visit localhost:3000 in browser
 
-* Because I have the trial version of ngrok, this step won't work at the moment. Please reach out to me for details.
+A couple notes:
+- Because I have a trial version of Twilio, this app will only work with my personal phone number.
+- The trial version of ngrok requires me to reconfigure my Twilio account each time.
+
+Please reach out to me for any questions!
