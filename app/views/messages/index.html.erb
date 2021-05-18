@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Messages</h1>
+<h1>Text Sender</h1>
 
 <table>
   <thead>
@@ -20,7 +20,7 @@
         <td><%= message.phone_number %></td>
         <td class='text'><%= message.text %></td>
         <td class='incoming'><%= message.incoming_or_outgoing %></td>
-        <td><%= link_to 'Delete', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'X', message, method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete' %></td>
       </tr>
     <% end %>
   </tbody>
