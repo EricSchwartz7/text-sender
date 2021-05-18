@@ -1,3 +1,5 @@
+**Text Sender**
+
 This app leverages Twilio and Rails to send text messages back and forth between browser and cell phone. It stores a record of every text sent and received.
 
 Setup instructions
