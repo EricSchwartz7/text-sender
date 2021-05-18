@@ -1,25 +1,28 @@
-// function formatPhoneNumber(phoneNumberString) {
-//     var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
-//     var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-//     if (match) {
-//       return '(' + match[1] + ') ' + match[2] + '-' + match[3];
-//     }
-//     return null;
-//   }
+function formatPhoneNumber(phoneNumberString) {
+  var cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+  var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+  if (match) {
+    return '(' + match[1] + ') ' + match[2] + '-' + match[3];
+  } else {
+    return phoneNumberString
+  }
+}
 
-// window.addEventListener('load', function () {
+$(document).on('turbolinks:load', () => {
 
-//     let phoneField = document.querySelector('#message_phone_number');
+    let hiddenPhoneField = $('#message_phone_number')
+    let formattedPhoneField = $('#message_formatted_phone');
 
-//     phoneField.addEventListener('blur', event => {
+    formattedPhoneField.blur(event => {
+      
+      // validate
 
-//         // alert("Phone input blurred")
-//         let formattedNumber = formatPhoneNumber(event.target.value);
+      hiddenPhoneField.val(parseInt(event.target.value));
+      let formattedNumber = formatPhoneNumber(event.target.value);
 
-//         // Don't follow the link
-//         event.preventDefault();
+      // Don't follow the link
+      event.preventDefault();
 
-//         phoneField.value = formattedNumber;
-//     }, false);
-
-// });
+      formattedPhoneField.val(formattedNumber);
+  });
+});

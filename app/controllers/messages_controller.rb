@@ -1,13 +1,10 @@
 class MessagesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_message, only: %i[ show edit update destroy ]
 
   # GET /messages or /messages.json
   def index
     @messages = Message.all
-  end
-
-  # GET /messages/1 or /messages/1.json
-  def show
   end
 
   # GET /messages/new
@@ -17,12 +14,13 @@ class MessagesController < ApplicationController
 
   # POST /messages or /messages.json
   def create
-    @message = Message.new(message_params)
+    @message = Message.new(outgoing_params)
+    @message[:incoming] = false
 
     respond_to do |format|
       if @message.save
         TwilioTextMessenger.new(@message.text, @message.phone_number).send_text
-        format.html { redirect_to @message, notice: "Message was successfully created." }
+        format.html { redirect_to messages_url, notice: "Message was successfully sent." }
         format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,6 +38,23 @@ class MessagesController < ApplicationController
     end
   end
 
+  def receive_text
+    @message = Message.build_incoming_message(incoming_params)
+    # respond_to do |format|
+      if @message.save
+        response = Twilio::TwiML::MessagingResponse.new do |r|
+          r.message body: "Message received: #{@message.text}"
+        end
+        render xml: response.to_s
+      else
+        response = Twilio::TwiML::MessagingResponse.new do |r|
+          r.message body: "Something went wrong."
+        end
+        render xml: response.to_s
+      end
+    # end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message
@@ -47,7 +62,11 @@ class MessagesController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def message_params
+    def outgoing_params
       params.require(:message).permit(:name, :phone_number, :text, :incoming)
+    end
+
+    def incoming_params
+      params.permit(:FromCity, :From, :Body)
     end
 end

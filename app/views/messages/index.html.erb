@@ -20,7 +20,6 @@
         <td><%= message.phone_number %></td>
         <td><%= message.text %></td>
         <td><%= message.incoming %></td>
-        <td><%= link_to 'Show', message %></td>
         <td><%= link_to 'Delete', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
