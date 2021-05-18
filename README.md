@@ -12,6 +12,6 @@ Setup instructions
 
 A couple notes:
 - Because I have a trial version of Twilio, this app will only work with my personal phone number.
-- The trial version of ngrok requires me to reconfigure my Twilio account each time.
+- The trial version of ngrok requires me to reconfigure my Twilio account each time it starts up, otherwise it won't be able receive incoming texts.
 
 Please reach out to me for any questions!
