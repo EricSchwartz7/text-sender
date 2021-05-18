@@ -38,21 +38,21 @@ class MessagesController < ApplicationController
     end
   end
 
+  # POST /receive_text
+  # When a text is received, save it to the database and send a reply including the text content.
   def receive_text
     @message = Message.build_incoming_message(incoming_params)
-    # respond_to do |format|
-      if @message.save
-        response = Twilio::TwiML::MessagingResponse.new do |r|
-          r.message body: "Message received: #{@message.text}"
-        end
-        render xml: response.to_s
-      else
-        response = Twilio::TwiML::MessagingResponse.new do |r|
-          r.message body: "Something went wrong."
-        end
-        render xml: response.to_s
+    if @message.save
+      response = Twilio::TwiML::MessagingResponse.new do |r|
+        r.message body: "Message received: #{@message.text}"
       end
-    # end
+      render xml: response.to_s
+    else
+      response = Twilio::TwiML::MessagingResponse.new do |r|
+        r.message body: "Something went wrong."
+      end
+      render xml: response.to_s
+    end
   end
 
   private
