@@ -17,25 +17,10 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create message" do
     assert_difference('Message.count') do
-      post messages_url, params: { message: { incoming: @message.incoming, name: @message.name, phone_number: @message.phone_number, text: @message.text } }
+      post messages_url, params: { message: { name: @message.name, phone_number: @message.phone_number, text: @message.text } }
     end
 
-    assert_redirected_to message_url(Message.last)
-  end
-
-  test "should show message" do
-    get message_url(@message)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_message_url(@message)
-    assert_response :success
-  end
-
-  test "should update message" do
-    patch message_url(@message), params: { message: { incoming: @message.incoming, name: @message.name, phone_number: @message.phone_number, text: @message.text } }
-    assert_redirected_to message_url(@message)
+    assert_redirected_to messages_url
   end
 
   test "should destroy message" do

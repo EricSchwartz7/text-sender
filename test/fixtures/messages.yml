@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  phone_number: 1
+  phone_number: 5512069167
   text: MyText
   incoming: false
 
 two:
   name: MyString
-  phone_number: 1
+  phone_number: 5512069167
   text: MyText
   incoming: false

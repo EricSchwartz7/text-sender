@@ -1,5 +1,5 @@
 class Message < ApplicationRecord
-    validates :phone_number, presence: true
+    validates :phone_number, phone: true
     validates :text, presence: true
 
     def self.build_incoming_message(incoming_params)
@@ -9,5 +9,9 @@ class Message < ApplicationRecord
           text: incoming_params[:Body],
           incoming: true
         )
+    end
+
+    def incoming_or_outgoing
+      incoming ? "Incoming" : "Outgoing"
     end
 end

@@ -5,8 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Phone number</th>
+      <th>From</th>
+      <th>To</th>
       <th>Text</th>
       <th>Incoming</th>
       <th colspan="3"></th>
@@ -18,8 +18,8 @@
       <tr>
         <td><%= message.name %></td>
         <td><%= message.phone_number %></td>
-        <td><%= message.text %></td>
-        <td><%= message.incoming %></td>
+        <td class='text'><%= message.text %></td>
+        <td class='incoming'><%= message.incoming_or_outgoing %></td>
         <td><%= link_to 'Delete', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

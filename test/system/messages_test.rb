@@ -44,6 +44,6 @@ class MessagesTest < ApplicationSystemTestCase
       click_on "Destroy", match: :first
     end
 
-    assert_text "Message was successfully destroyed"
+    assert_text "Message was successfully deleted"
   end
 end
