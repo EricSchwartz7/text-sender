@@ -1,24 +1,17 @@
-# README
+**Text Sender**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app leverages Twilio and Rails to send SMS messages back and forth between browser and cell phone. It stores a record of every text sent and received.
 
-Things you may want to cover:
+Setup instructions
+- Clone the repo
+- `rake db:migrate`
+- `bundle install`
+- `rails s`
+- Open a new terminal and run `./ngrok http 3000`
+- Visit localhost:3000 in browser
 
-* Ruby version
+A couple notes:
+- Because I have a trial version of Twilio, this app will only work with my personal phone number.
+- The trial version of ngrok requires me to reconfigure my Twilio account each time.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Please reach out to me for any questions!
